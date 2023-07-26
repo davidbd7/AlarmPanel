@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react';
 import Configuration from './components/Configuration';
 
 function App() {

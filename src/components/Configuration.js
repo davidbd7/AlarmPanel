@@ -1,9 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const Configuration = () => {
   const [codeInput, setCodeInput] = useState('');
   const [updatedCode, setUpdatedCode] = useState('');
+  const [backendData, setBackendData] = useState([{}])
+
+  useEffect(() => {
+    fetch("/api").then(
+      response => response.json()
+    ).then(
+      data => {
+        setBackendData(data)
+      }
+    )
+  }, {})
 
   const handleCodeInputChange = (event) => {
     setCodeInput(event.target.value);
