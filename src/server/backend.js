@@ -35,6 +35,22 @@ app.post('/updateCode', (req, res) => {
   });
 });
 
+app.post('/updateArmTime', (req, res) => {
+  const { arming_time } = req.body;
+
+  // Replace '/path/to/your/python_script.py' with the actual path to your Python script
+  exec(`python /home/ubuntu/Desktop/editor/alarmPanelFunctions.py updateArmTime ${arming_time}`, (error, stdout, stderr) => {
+    if (error) {
+      console.error('Error executing Python script:', error);
+      res.status(500).json({ error: 'Failed to execute Python script' });
+    } else {
+      console.log('Output:', stdout);
+      console.error('Error:', stderr);
+      res.send(stdout);
+    }
+  });
+});
+
 /*
 app.get('/updateCode', (req, res) => {
   const spawn = require('child_process').spawn;
